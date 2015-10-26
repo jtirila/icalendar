@@ -59,7 +59,7 @@ module TZInfo
     end
   end
 
-  class TimezoneTransitionInfo
+  class TimezoneTransitionDefinition
     def offset_from
       previous_offset.ical_offset
     end
@@ -84,7 +84,7 @@ module TZInfo
     end
   end
 
-  class TimezoneOffsetInfo
+  class TimezoneOffset
     def ical_offset
       o = utc_total_offset
       sprintf '%+-2.2d%2.2d', (o / 3600).to_i, ((o / 60) % 60).to_i
