@@ -26,13 +26,24 @@ class TestTZInfoExt < Test::Unit::TestCase
     assert_equal "+0100", tz_offset_to
   end
 
+
+
+
   def test_no_end_transition
     tz = TZInfo::Timezone.get('America/Cayman').ical_timezone DateTime.now
     assert_equal <<-EXPECTED.gsub("\n", "\r\n"), tz.to_ical
 BEGIN:VTIMEZONE
 TZID:America/Cayman
+BEGIN:DAYLIGHT
+DTSTART:20160313T030000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+TZNAME:EDT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+END:DAYLIGHT
 BEGIN:STANDARD
 DTSTART:19120201T000711
+RRULE:FREQ=YEARLY;BYMONTH=2;BYDAY=1TH
 TZNAME:EST
 TZOFFSETFROM:-0652
 TZOFFSETTO:-0500
